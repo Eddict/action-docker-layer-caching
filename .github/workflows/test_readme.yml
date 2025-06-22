@@ -74,11 +74,11 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - run: ${{ matrix.prepare_command }}
 
-    - uses: jpribyl/action-docker-layer-caching@main-release
+    - uses: eddict/action-docker-layer-caching@main-release
       with:
         key: docker-layer-caching-${{ github.workflow }}-${{ matrix.os }}-${{ matrix.inspect_image }}-sha:${{ github.sha }}-{hash}
         restore-keys: ''
@@ -92,11 +92,11 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - run: ${{ matrix.prepare_command }}
 
-    - uses: jpribyl/action-docker-layer-caching@main-release
+    - uses: eddict/action-docker-layer-caching@main-release
       with:
         key: never-restored-docker-layer-caching-${{ github.workflow }}-${{ matrix.os }}-${{ matrix.inspect_image }}-sha:${{ github.sha }}-{hash}
         restore-keys: docker-layer-caching-${{ github.workflow }}-${{ matrix.os }}-${{ matrix.inspect_image }}-sha:${{ github.sha }}-

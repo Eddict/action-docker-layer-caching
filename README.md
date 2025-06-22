@@ -1,4 +1,4 @@
-# Docker Layer Caching in GitHub Actions [![Readme Test status is unavailable](https://github.com/jpribyl/action-docker-layer-caching/workflows/Readme%20Test/badge.svg)](https://github.com/jpribyl/action-docker-layer-caching/actions?query=workflow%3A%22Readme+Test%22) [![CI status is unavailable](https://github.com/jpribyl/action-docker-layer-caching/workflows/CI/badge.svg)](https://github.com/jpribyl/action-docker-layer-caching/actions?query=workflow%3ACI)
+# Docker Layer Caching in GitHub Actions [![Readme Test status is unavailable](https://github.com/eddict/action-docker-layer-caching/workflows/Readme%20Test/badge.svg)](https://github.com/eddict/action-docker-layer-caching/actions?query=workflow%3A%22Readme+Test%22) [![CI status is unavailable](https://github.com/eddict/action-docker-layer-caching/workflows/CI/badge.svg)](https://github.com/eddict/action-docker-layer-caching/actions?query=workflow%3ACI)
 
 Enable Docker Layer Caching by adding a single line in GitHub Actions.
 This GitHub Action speeds up the building of docker images in your GitHub Actions workflow.
@@ -40,13 +40,13 @@ jobs:
       # In this step, this action saves a list of existing images,
       # the cache is created without them in the post run.
       # It also restores the cache if it exists.
-      - uses: jpribyl/action-docker-layer-caching@v0.1.1
+      - uses: eddict/action-docker-layer-caching@v0.1.1
         # Ignore the failure of a step and avoid terminating the job.
         continue-on-error: true
 
       - run: docker-compose up --build
 
-    # Finally, "Post Run jpribyl/action-docker-layer-caching@v0.1.1",
+    # Finally, "Post Run eddict/action-docker-layer-caching@v0.1.1",
     # which is the process of saving the cache, will be executed.
 ```
 
@@ -67,14 +67,14 @@ jobs:
       # In this step, this action saves a list of existing images,
       # the cache is created without them in the post run.
       # It also restores the cache if it exists.
-      - uses: jpribyl/action-docker-layer-caching@v0.1.1
+      - uses: eddict/action-docker-layer-caching@v0.1.1
         # Ignore the failure of a step and avoid terminating the job.
         continue-on-error: true
 
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 
-    # Finally, "Post Run jpribyl/action-docker-layer-caching@v0.1.1",
+    # Finally, "Post Run eddict/action-docker-layer-caching@v0.1.1",
     # which is the process of saving the cache, will be executed.
 ```
 
@@ -86,7 +86,7 @@ By default, the cache is separated by the workflow name.
 You can also set the cache key manually, like the official [actions/cache](https://github.com/actions/cache#usage) action.
 
 ```yaml
-- uses: jpribyl/action-docker-layer-caching@v0.1.1
+- uses: eddict/action-docker-layer-caching@v0.1.1
   # Ignore the failure of a step and avoid terminating the job.
   continue-on-error: true
   with:

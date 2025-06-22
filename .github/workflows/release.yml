@@ -16,11 +16,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
         node-version: 20.x
 
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Output info
       id: info
@@ -36,7 +36,7 @@ jobs:
         commit-message: ${{ steps.info.outputs.commit_message }}
         push-branch: '{branch}-release'
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       if: github.event_name != 'delete'
       with:
         name: built
@@ -99,17 +99,17 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - run: ${{ matrix.prepare_command }}
 
     - name: Download action
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: built
         path: action-dlc
     - uses: ./action-dlc
-      name: Run jpribyl/action-docker-layer-caching@${{ matrix.branch }}
+      name: Run eddict/action-docker-layer-caching@${{ matrix.branch }}
       with:
         key: docker-layer-caching-${{ matrix.os }}-${{ matrix.inspect_image }}-sha:${{ github.sha }}-{hash}
 
@@ -122,7 +122,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - run: ${{ matrix.prepare_command }}
 
@@ -131,13 +131,13 @@ jobs:
       run: echo "branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
 
     - name: Download action
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: built
         path: action-dlc
 
     - uses: ./action-dlc
-      name: Run jpribyl/action-docker-layer-caching@${{ matrix.branch }}
+      name: Run eddict/action-docker-layer-caching@${{ matrix.branch }}
       with:
         key: never-restored-docker-layer-caching-${{ matrix.os }}-${{ matrix.inspect_image }}-sha:${{ github.sha }}-{hash}
         restore-keys: docker-layer-caching-${{ matrix.os }}-${{ matrix.inspect_image }}-sha:${{ github.sha }}-
