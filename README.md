@@ -3,7 +3,7 @@
 Enable Docker Layer Caching by adding a single line in GitHub Actions.
 This GitHub Action speeds up the building of docker images in your GitHub Actions workflow.
 
-You can run `docker build` and `docker-compose build` in your GitHub Actions workflow using the cache with no special configuration, and it also supports multi-stage builds.
+You can run `docker build` and `docker compose build` in your GitHub Actions workflow using the cache with no special configuration, and it also supports multi-stage builds.
 
 This GitHub Action uses the [docker save](https://docs.docker.com/engine/reference/commandline/save/) / [docker load](https://docs.docker.com/engine/reference/commandline/load/) command and the [@actions/cache](https://www.npmjs.com/package/@actions/cache) library.
 
@@ -25,7 +25,7 @@ jobs:
 
       # Pull the latest image to build, and avoid caching pull-only images.
       # (docker pull is faster than caching in most cases.)
-      - run: docker-compose pull
+      - run: docker compose pull
 
       # In this step, this action saves a list of existing images,
       # the cache is created without them in the post run.
@@ -34,7 +34,7 @@ jobs:
         # Ignore the failure of a step and avoid terminating the job.
         continue-on-error: true
 
-      - run: docker-compose up --build
+      - run: docker compose up --build
 
     # Finally, "Post Run eddict/action-docker-layer-caching@v0.1.1",
     # which is the process of saving the cache, will be executed.
