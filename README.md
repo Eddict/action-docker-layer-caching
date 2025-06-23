@@ -7,16 +7,6 @@ You can run `docker build` and `docker-compose build` in your GitHub Actions wor
 
 This GitHub Action uses the [docker save](https://docs.docker.com/engine/reference/commandline/save/) / [docker load](https://docs.docker.com/engine/reference/commandline/load/) command and the [@actions/cache](https://www.npmjs.com/package/@actions/cache) library.
 
-## ⚠️ **Deprecation Notice for `satackey v0.0.11` and older** ⚠️
-
-Both this and the underlying [push-prebuilt-action](https://github.com/jpribyl/push-prebuilt-action) repositories seem to be
-abandoned and the old repo is throwing a couple deprecation warnings. v0.1.0
-addresses those. Would be happy to add others on as maintainers as well to
-avoid a repeat of this scenario.
-
-([#347](https://github.com/satackey/action-docker-layer-caching/issues/347))  
-\*\*Please update to version `v0.1.0`
-
 ## Example workflows
 
 ### Docker Compose

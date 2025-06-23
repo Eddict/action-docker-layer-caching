@@ -31,7 +31,7 @@ jobs:
         fi
         echo "commit_message=[auto]" >> $GITHUB_OUTPUT
 
-    - uses: jpribyl/push-prebuilt-action@v0.2.3
+    - uses: eddict/push-prebuilt-action@v0.2.4
       with:
         commit-message: ${{ steps.info.outputs.commit_message }}
         push-branch: '{branch}-release'
